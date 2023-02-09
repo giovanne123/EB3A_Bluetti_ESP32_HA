@@ -1,3 +1,27 @@
+# EB3A_Bluetti_ESP32_HA
+Interface between Bluetti-EB3A and HA by using a ESP32 with Bluetooth and MQTT
+Extended with focus to EB3A
+- Servo attached to ESP32 for switching on the EB3A if BLE is powered down by the EB3A (called by MQTT or fallback HTTP)
+- HA Discovery config is send to MQTT by external python script and config in file (modifications possible without recompile/reflash)
+- Set Connected Status to MQTT for using in HA
+- More functions for EB3A possible (LED, ECO_MODE, ...) !But lot's "Quick&Dirty"!
+- No auto Reboot ESP32 if Bluetooth is not connected, because EB3A switch Bluetooth off after ~1h (when nothing is active)
+  Therefore is the Servo to switch on again and also power consumption can be optimized when Bluetooth is not all the time on on EB3A
+(- controlling will be done in HA by Automations, ...)
+
+!!! Lot's is Quick&Dirty because needed the EB3A running for Solar over-production redirection ;-) !!!
+
+(Have put everything in new repository because too much implemented Quick & Dirty for EB3A)
+
+--------------------
+
+Initial ideas by and thanks to:
+- https://github.com/mariolukas/Bluetti_ESP32_Bridge
+- https://github.com/warhammerkid/bluetti_mqtt
+
+
+Original from above:
+--------------------
 ## About
 This is an ESP32 based Bluetooth to MQTT Bride for BLUETTI power stations. The project is based on https://github.com/warhammerkid/bluetti_mqtt
 The code is tested on a AC300. Other Powerstations should also work but are untested yet. The discussion on https://diysolarforum.com/threads/monitoring-bluetti-systems.37870/ was a great help for understanding the protocol. 
