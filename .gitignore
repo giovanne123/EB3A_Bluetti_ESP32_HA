@@ -1,0 +1,57 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Platformio
+.pio
+build
+
+# Other files and folders
+.vscode/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+firmware_ha_discovery_complex06022023.bin
+Bluetti_ESP32/Device_EB3A_ha_discover_config.json
+Bluetti_ESP32/DEVICE_EB3A.h_09022023
+Bluetti_ESP32/DeviceType.h_09022023
+Bluetti_ESP32/DeviceType.h_complex
+Bluetti_ESP32/HRG_MY_TOPICS_DISCOVER.txt
+Bluetti_ESP32/MQTT.cpp_09022023
+Bluetti_ESP32/MQTT.cpp_complex
+Bluetti_ESP32/PayloadParser.cpp_Orig
