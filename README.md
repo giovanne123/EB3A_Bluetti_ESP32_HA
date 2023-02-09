@@ -9,7 +9,19 @@ Extended with focus to EB3A
   Therefore is the Servo to switch on again and also power consumption can be optimized when Bluetooth is not all the time on on EB3A
 (- controlling will be done in HA by Automations, ...)
 
-!!! Lot's is Quick&Dirty because needed the EB3A running for Solar over-production redirection ;-) !!!
+<b>!!! Lot's is Quick&Dirty because needed the EB3A running for Solar over-production redirection ;-) !!!</b>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/16689453/217886353-c47b373b-c351-4200-a6bf-dfd6ca5e5826.png" width=25% /> 
+  <img src="https://user-images.githubusercontent.com/16689453/217889994-d51393c4-65a5-4eb5-ba86-e19727586bd3.png" width=25% /> 
+  <img src="https://user-images.githubusercontent.com/16689453/217887074-5e2c0094-dbd3-400c-a1f6-35d7add38de4.png" width=25% />
+<br>
+<ins><b><i> Example: HA and MQTT</i></b></ins>
+</p>
+
+Todo:
+- Remove Quick&Dirty ;-)
+- for state-topic for some entities (e.g. LED_MODE, CHARGING_MODE, ...) currently the command-topic is used until state can be read from the EB3A
+- ...
 
 (Have put everything in new repository because too much implemented Quick & Dirty for EB3A)
 
