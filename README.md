@@ -7,6 +7,7 @@ Extended with focus to EB3A
 - More functions for EB3A possible (LED, ECO_MODE, ...) !But lot's "Quick&Dirty"!
 - No auto Reboot ESP32 if Bluetooth is not connected, because EB3A switch Bluetooth off after ~1h (when nothing is active)
   Therefore is the Servo to switch on again and also power consumption can be optimized when Bluetooth is not all the time on on EB3A
+- ...
 (- controlling will be done in HA by Automations, ...)
 
 <b>!!! Lot's is Quick&Dirty because needed the EB3A running for Solar over-production redirection ;-) !!!</b>
