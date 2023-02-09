@@ -7,7 +7,8 @@ Extended with focus to EB3A
 - Send Connected Status to MQTT for using in HA
 - More functions for EB3A possible (LED, ECO_MODE, ...) !But lot's "Quick&Dirty"!
 - No auto Reboot ESP32 if Bluetooth is not connected, because EB3A switch Bluetooth off after ~1h (when nothing is active)
-  Therefore is the Servo to switch on again and also power consumption can be optimized when Bluetooth is not all the time on on EB3A
+  Therefore is the Servo to switch on again and also power consumption can be optimized when Bluetooth is not all the time on on EB3A.
+  So the EB3A can be switched on/off on request and minimize power consumption of the little Bluetti ;-)
 - ...
 
 (- controlling will be done in HA by Automations, ...)
