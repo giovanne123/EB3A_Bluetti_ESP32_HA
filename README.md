@@ -1,5 +1,6 @@
 # EB3A_Bluetti_ESP32_HA
-Interface between Bluetti-EB3A and HA by using a ESP32 with Bluetooth and MQTT
+Interface between Bluetti-EB3A and HA by using a ESP32 with Bluetooth and MQTT (see below original)
+
 Extended with focus to EB3A
 - Servo attached to ESP32 for switching on the EB3A if BLE is powered down by the EB3A (called by MQTT or fallback HTTP)
 - HA Discovery config is send to MQTT by external python script and config in file (modifications possible without recompile/reflash)
