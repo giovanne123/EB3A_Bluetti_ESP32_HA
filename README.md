@@ -4,7 +4,7 @@ Interface between Bluetti-EB3A and HA by using a ESP32 with Bluetooth and MQTT (
 Extended with focus to EB3A
 - Servo attached to ESP32 for switching on the EB3A if BLE is powered down by the EB3A (called by MQTT or fallback HTTP (see: https://github.com/mariolukas/Bluetti_ESP32_Bridge/issues/30)
 - HA Discovery config is send to MQTT by external python script and config in file (modifications possible without recompile/reflash)
-- Send Connected Status to MQTT for using in HA
+- Send Connected Status BT&MQTT via MQTT for using in HA (but only BT useful because if MQTT isn't connected the info is not up to date, additional ping ESP32 from HA to check if ESP is still alive)
 - More functions for EB3A possible (LED, ECO_MODE, ...) !But lot's "Quick&Dirty"!
 - No auto Reboot ESP32 if Bluetooth is not connected, because EB3A switch Bluetooth off after ~1h (when nothing is active)
   Therefore is the Servo to switch on again and also power consumption can be optimized when Bluetooth is not all the time on on EB3A.
