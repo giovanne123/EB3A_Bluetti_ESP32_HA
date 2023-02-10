@@ -25,6 +25,7 @@ Extended with focus to EB3A
 Todo:
 - Remove Quick&Dirty ;-)
 - for state-topic for some entities (e.g. LED_MODE, CHARGING_MODE, ...) currently the command-topic is used until state can be read from the EB3A
+- implement ha discovery config in ESP instead of external 
 - ...
 
 (Have put everything in new repository because too much implemented Quick & Dirty for EB3A)
