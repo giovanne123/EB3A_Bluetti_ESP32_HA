@@ -15,7 +15,7 @@ Extended with focus to EB3A
 
 <b>!!! Lot's is Quick&Dirty because needed the EB3A running for Solar over-production redirection ;-) !!!</b>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/16689453/217886353-c47b373b-c351-4200-a6bf-dfd6ca5e5826.png" width=25% /> 
+  <img src="https://user-images.githubusercontent.com/16689453/218101746-88c26f85-9ce7-4484-99e3-6ec1f2127e5b.png" width=25% /> 
   <img src="https://user-images.githubusercontent.com/16689453/217889994-d51393c4-65a5-4eb5-ba86-e19727586bd3.png" width=25% /> 
   <img src="https://user-images.githubusercontent.com/16689453/217887074-5e2c0094-dbd3-400c-a1f6-35d7add38de4.png" width=25% />
 <br>
