@@ -294,7 +294,7 @@ void publishDeviceStateStatus(){
 
   ESPBluettiSettings settings = get_esp32_bluetti_settings();
   sprintf(publishTopicBuf, "bluetti/%s/state/%s", settings.bluetti_device_id, "device_status" ); 
-  String value = "{\"MQTTconnected\":" + String(isMQTTconnected()) + "\", \"BTconnected\":" + String(isBTconnected()) + "}"; 
+  String value = "{\"MQTTconnected\":" + String(isMQTTconnected()) + ", \"BTconnected\":" + String(isBTconnected()) + "}"; 
   if (!client.publish(publishTopicBuf, value.c_str() )){
     publishErrorCount++;
   }
