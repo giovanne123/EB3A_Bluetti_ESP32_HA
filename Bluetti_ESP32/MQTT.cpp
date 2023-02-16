@@ -31,6 +31,9 @@ String map_field_name(enum field_names f_name){
       case AC_OUTPUT_ON:
         return "ac_output_on";
         break; 
+      case AC_OUTPUT_MODE:
+        return "ac_output_mode";
+        break; 
       case POWER_GENERATION:
         return "power_generation";
         break;       
@@ -45,6 +48,12 @@ String map_field_name(enum field_names f_name){
         break;
       case AC_INPUT_VOLTAGE:
         return "ac_input_voltage";
+        break;
+      case AC_INPUT_FREQUENCY:
+        return "ac_input_frequency";
+        break;
+      case PACK_VOLTAGE:
+        return "pack_voltage";
         break;
       case INTERNAL_PACK_VOLTAGE:
         return "internal_pack_voltage";
@@ -67,8 +76,8 @@ String map_field_name(enum field_names f_name){
       case AUTO_SLEEP_MODE:
         return "auto_sleep_mode";
         break;
-      case GRID_CHANGE_ON:
-        return "grid_change_on";
+      case GRID_CHARGE_ON:
+        return "grid_charge_on";
         break;
       case INTERNAL_AC_VOLTAGE:
         return "internal_ac_voltage";
@@ -79,12 +88,87 @@ String map_field_name(enum field_names f_name){
       case INTERNAL_CURRENT_ONE:
         return "internal_current_one";
         break;
+      case INTERNAL_POWER_ONE:
+        return "internal_power_one";
+        break;
+      case INTERNAL_CURRENT_TWO:
+        return "internal_current_two";
+        break;
+      case INTERNAL_POWER_TWO:
+        return "internal_power_two";
+        break;
+      case INTERNAL_CURRENT_THREE:
+        return "internal_current_three";
+        break;
+      case INTERNAL_POWER_THREE:
+        return "internal_power_three";
+        break;
       case PACK_NUM_MAX:
         return "pack_max_num";
+        break;
+      case PACK_NUM:
+        return "pack_num";
+        break;
+      case PACK_BATTERY_PERCENT:
+        return "pack_battery_percent";
         break;
       case INTERNAL_DC_INPUT_VOLTAGE:
         return "internal_dc_input_voltage";
         break;
+      case INTERNAL_DC_INPUT_POWER:
+        return "internal_dc_input_power";
+        break;
+      case INTERNAL_DC_INPUT_CURRENT:
+        return "internal_dc_input_current";
+        break;
+      case INTERNAL_CELL01_VOLTAGE:
+        return "internal_cell01_voltage";    
+        break;
+      case INTERNAL_CELL02_VOLTAGE:
+        return "internal_cell02_voltage";    
+        break;
+      case INTERNAL_CELL03_VOLTAGE:
+        return "internal_cell03_voltage";    
+        break;
+      case INTERNAL_CELL04_VOLTAGE:
+        return "internal_cell04_voltage";    
+        break;
+      case INTERNAL_CELL05_VOLTAGE:
+        return "internal_cell05_voltage";    
+        break;
+      case INTERNAL_CELL06_VOLTAGE:
+        return "internal_cell06_voltage";    
+        break;
+      case INTERNAL_CELL07_VOLTAGE:
+        return "internal_cell07_voltage";    
+        break;
+      case INTERNAL_CELL08_VOLTAGE:
+        return "internal_cell08_voltage";    
+        break;
+      case INTERNAL_CELL09_VOLTAGE:
+        return "internal_cell09_voltage";    
+        break;
+      case INTERNAL_CELL10_VOLTAGE:
+        return "internal_cell10_voltage";    
+        break;
+      case INTERNAL_CELL11_VOLTAGE:
+        return "internal_cell11_voltage";    
+        break;
+      case INTERNAL_CELL12_VOLTAGE:
+        return "internal_cell12_voltage";    
+        break;
+      case INTERNAL_CELL13_VOLTAGE:
+        return "internal_cell13_voltage";    
+        break;
+      case INTERNAL_CELL14_VOLTAGE:
+        return "internal_cell14_voltage";    
+        break;
+      case INTERNAL_CELL15_VOLTAGE:
+        return "internal_cell15_voltage";    
+        break;
+      case INTERNAL_CELL16_VOLTAGE:
+        return "internal_cell16_voltage";    
+        break;     
       case LED_MODE:
         return "led_mode";
         break;
@@ -107,23 +191,94 @@ String map_field_name(enum field_names f_name){
         return "power_on_by_servo";
         break;
       default:
+        #ifdef DEBUG
+          Serial.println(F("Info 'map_field_name' found unknown field!"));
+        #endif
         return "unknown";
         break;
    }
   
 }
 
+//There is no reflection to do string to enum
+//There are a couple of ways to work aroung it... but basically are just "case" statements
+//Wapped them in a fuction
+String map_command_value(String command_name, String value){
+  String toRet = value;
+  value.toUpperCase();
+  command_name.toUpperCase(); //force case indipendence
+
+  //on / off commands
+  if(command_name == "POWER_OFF" || command_name == "AC_OUTPUT_ON" || command_name == "DC_OUTPUT_ON" || command_name == "ECO_ON" || command_name == "POWER_LIFTING_ON") {
+    if (value == "ON") {
+      toRet = "1";
+    }
+    if (value == "OFF") {
+      toRet = "0";
+    }
+  }
+
+  //See DEVICE_EB3A enums
+  if(command_name == "LED_MODE"){
+    if (value == "LED_LOW") {
+      toRet = "1";
+    }
+    if (value == "LED_HIGH") {
+      toRet = "2";
+    }
+    if (value == "LED_SOS") {
+      toRet = "3";
+    }
+    if (value == "LED_OFF") {
+      toRet = "4";
+    }
+  }
+
+  //See DEVICE_EB3A enums
+  if(command_name == "ECO_SHUTDOWN"){
+    if (value == "ONE_HOUR") {
+      toRet = "1";
+    }
+    if (value == "TWO_HOURS") {
+      toRet = "2";
+    }
+    if (value == "THREE_HOURS") {
+      toRet = "3";
+    }
+    if (value == "FOUR_HOURS") {
+      toRet = "4";
+    }
+  }
+
+  //See DEVICE_EB3A enums
+  if(command_name == "CHARGING_MODE"){
+    if (value == "STANDARD") {
+      toRet = "0";
+    }
+    if (value == "SILENT") {
+      toRet = "1";
+    }
+    if (value == "TURBO") {
+      toRet = "2";
+    }
+  }
+
+
+  return toRet;
+}
+
 // Callback function
 void callback(char* topic, byte* payload, unsigned int length) {
   payload[length] = '\0';
   String topic_path = String(topic);
+  topic_path.toLowerCase();//in case we recieve DC_OUTPUT_ON instead of the expected dc_output_on
   
   Serial.print("MQTT Message arrived on topic: ");
   Serial.print(topic);
   Serial.print(" Payload: ");
   String strPayload = String((char * ) payload);
   Serial.println(strPayload);
-
+  
   bt_command_t command;
   command.prefix = 0x01;
   command.field_update_cmd = 0x06;
@@ -136,83 +291,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
             //Quick&Dirty (FIXME): map ON, OFF, LOW, HIGH, SOS, ... to numeric values for the command to send by BL
             //e.g. for "power_off" from "ON" to "1"
 			      String current_name = map_field_name(bluetti_device_command[i].f_name);
-            if(current_name == "power_off") {
-                  if (strPayload == "ON") {
-                    strPayload = "1";
-                  }
-            } 
-            else if(current_name == "led_mode") {
-                  if (strPayload == "LED_LOW") {
-                    strPayload = "1";
-                  }
-                  else if (strPayload == "LED_HIGH") {
-                    strPayload = "2";
-                  }
-                  else if (strPayload == "LED_SOS") {
-                    strPayload = "3";
-                  }
-                  else if (strPayload == "LED_OFF") {
-                    strPayload = "4";
-                  }
-            } 
-            else if(current_name == "eco_shutdown") {
-                  if (strPayload == "ONE_HOUR") {
-                    strPayload = "1";
-                  }
-                  else if (strPayload == "TWO_HOURS") {
-                    strPayload = "2";
-                  }
-                  else if (strPayload == "THREE_HOURS") {
-                    strPayload = "3";
-                  }
-                  else if (strPayload == "FOUR_HOURS") {
-                    strPayload = "4";
-                  }
-            } 
-            else if(current_name == "charging_mode") {
-                  if (strPayload == "STANDARD") {
-                    strPayload = "0";
-                  }
-                  else if (strPayload == "SILENT") {
-                    strPayload = "1";
-                  }
-                  else if (strPayload == "TURBO") {
-                    strPayload = "2";
-                  }
-			      }
-            else if(current_name == "ac_output_on") {
-                  if (strPayload == "ON") {
-                    strPayload = "1";
-                  }
-                  else if (strPayload == "OFF") {
-                    strPayload = "0";
-                  }
-            }
-            else if(current_name == "dc_output_on") {
-                  if (strPayload == "ON") {
-                    strPayload = "1";
-                  }
-                  else if (strPayload == "OFF") {
-                    strPayload = "0";
-                  }
-            }
-            else if(current_name == "eco_on") {
-                  if (strPayload == "ON") {
-                    strPayload = "1";
-                  }
-                  else if (strPayload == "OFF") {
-                    strPayload = "0";
-                  }
-            }
-            else if(current_name == "power_lifting_on") {
-                  if (strPayload == "ON") {
-                    strPayload = "1";
-                  }
-                  else if (strPayload == "OFF") {
-                    strPayload = "0";
-                  }
-            }
-
+            strPayload = map_command_value(current_name,strPayload);
     }
   }
   Serial.print(" Payload - switched: ");
@@ -247,6 +326,7 @@ void subscribeTopic(enum field_names field_name) {
 
 void publishTopic(enum field_names field_name, String value){
   char publishTopicBuf[1024];
+  ESPBluettiSettings settings = get_esp32_bluetti_settings();
  
 #ifdef DEBUG
   Serial.println("publish topic for field: " +  map_field_name(field_name));
@@ -259,18 +339,20 @@ void publishTopic(enum field_names field_name, String value){
     ESP.restart();
    
   } 
-
-  ESPBluettiSettings settings = get_esp32_bluetti_settings();
-  sprintf(publishTopicBuf, "bluetti/%s/state/%s", settings.bluetti_device_id, map_field_name(field_name).c_str() ); 
-  lastMQTTMessage = millis();
-  if (!client.publish(publishTopicBuf, value.c_str() )){
-    publishErrorCount++;
-    AddtoMsgView(String(lastMQTTMessage) + ": publish ERROR! " + map_field_name(field_name) + " -> " + value);
-  }
-  else{
-    AddtoMsgView(String(lastMQTTMessage) + ": " + map_field_name(field_name) + " -> " + value);
-  }
   
+  sprintf(publishTopicBuf, "bluetti/%s/state/%s", settings.bluetti_device_id, map_field_name(field_name).c_str() ); 
+  if (strlen(settings.mqtt_server) == 0){
+    AddtoMsgView(String(millis()) +": " + map_field_name(field_name) + " -> " + value); 
+  }else{
+    lastMQTTMessage = millis();
+    if (!client.publish(publishTopicBuf, value.c_str() )){
+      publishErrorCount++;
+      AddtoMsgView(String(lastMQTTMessage) + ": publish ERROR! " + map_field_name(field_name) + " -> " + value);
+    }
+    else{
+      AddtoMsgView(String(lastMQTTMessage) + ": " + map_field_name(field_name) + " -> " + value);
+    }
+  }
   
  
 }
@@ -280,13 +362,13 @@ void publishDeviceState(){
 
   ESPBluettiSettings settings = get_esp32_bluetti_settings();
   sprintf(publishTopicBuf, "bluetti/%s/state/%s", settings.bluetti_device_id, "device" ); 
-  String value = "{\"IP\":\"" + WiFi.localIP().toString() + "\", \"MAC\":\"" + WiFi.macAddress() + "\", \"Uptime\":" + millis() + "}"; 
+  String value = "{\"IP\":\"" + WiFi.localIP().toString() + "\", \"MAC\":\"" + WiFi.macAddress() + "\", \"Uptime\":" + millis() + "}";
   if (!client.publish(publishTopicBuf, value.c_str() )){
     publishErrorCount++;
   }
   lastMQTTMessage = millis();
   previousDeviceStatePublish = millis();
-  
+ 
 }
 
 void publishDeviceStateStatus(){
@@ -294,7 +376,7 @@ void publishDeviceStateStatus(){
 
   ESPBluettiSettings settings = get_esp32_bluetti_settings();
   sprintf(publishTopicBuf, "bluetti/%s/state/%s", settings.bluetti_device_id, "device_status" ); 
-  String value = "{\"MQTTconnected\":" + String(isMQTTconnected()) + "\", \"BTconnected\":" + String(isBTconnected()) + "}"; 
+  String value = "{\"MQTTconnected\":" + String(isMQTTconnected()) + ", \"BTconnected\":" + String(isBTconnected()) + "}"; 
   if (!client.publish(publishTopicBuf, value.c_str() )){
     publishErrorCount++;
   }
@@ -312,6 +394,10 @@ void initMQTT(){
 
     enum field_names f_name;
     ESPBluettiSettings settings = get_esp32_bluetti_settings();
+    if (strlen(settings.mqtt_server) == 0){
+      Serial.println("No MQTT server configured");
+      return;
+    }
     Serial.print("Connecting to MQTT at: ");
     Serial.print(settings.mqtt_server);
     Serial.print(":");
@@ -345,6 +431,10 @@ void initMQTT(){
 };
 
 void handleMQTT(){
+    ESPBluettiSettings settings = get_esp32_bluetti_settings();
+    if (strlen(settings.mqtt_server) == 0){
+      return;
+    }
     if ((millis() - lastMQTTMessage) > (MAX_DISCONNECTED_TIME_UNTIL_REBOOT * 60000)){ 
       Serial.println(F("MQTT is disconnected over allowed limit, reboot device"));
       ESP.restart();
@@ -387,10 +477,10 @@ int getPublishErrorCount(){
 unsigned long getLastMQTTMessageTime(){
     return lastMQTTMessage;
 }
-unsigned long getLastMQTDeviceStateMessageTime(){
+unsigned long getLastMQTTDeviceStateMessageTime(){
     return previousDeviceStatePublish;
 }
-unsigned long getLastMQTDeviceStateStatusMessageTime(){
+unsigned long getLastMQTTDeviceStateStatusMessageTime(){
     return previousDeviceStateStatusPublish;
 }
 

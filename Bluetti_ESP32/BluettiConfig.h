@@ -5,8 +5,7 @@
 #include "PowerStation.h"
 #include "config.h"
 
-#include "Device_EB3A.h"
-/**#if POWER_STATION(AC300)
+#if POWER_STATION(AC300)
   #include "Device_AC300.h"
 #elif POWER_STATION(AC200M)
  #include "Device_AC200M.h"
@@ -19,5 +18,5 @@
 #elif POWER_STATION(AC500)
  #include "Device_AC500.h"
 #endif
-*/
+
 #endif

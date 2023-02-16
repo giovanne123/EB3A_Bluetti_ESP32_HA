@@ -8,7 +8,7 @@
 
 uint16_t parse_uint_field(uint8_t data[]);
 bool parse_bool_field(uint8_t data[]);
-float pase_decimal_field(uint8_t data[], uint8_t scale);
+float parse_decimal_field(uint8_t data[], uint8_t scale);
 uint64_t parse_serial_field(uint8_t data[]);
 float parse_version_field(uint8_t data[]);
 String parse_string_field(uint8_t data[]);
