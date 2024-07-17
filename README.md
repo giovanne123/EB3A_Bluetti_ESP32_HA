@@ -1,3 +1,7 @@
+17.07.2024, I have no longer a Bluetti EB3A, so will no longer support this repo/project 
+
+-------
+
 # EB3A_Bluetti_ESP32_HA
 Interface between Bluetti-EB3A and HA by using a ESP32 with Bluetooth and MQTT (see below original)
 
